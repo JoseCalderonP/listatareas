@@ -1,0 +1,21 @@
+{% extends 'baseTareas.html' %}
+{% block header %}
+<h1>{% block title %}Nueva Tarea{%  endblock %}</h1>
+{% endblock %}
+
+{% block content%}
+    <div class="container">
+        <a class="btn btn-outline-secondary btn btnLog action" href="{{url_for('todo.index')}}">Regresar</a>
+        <div class="padded">
+            <form method="post">
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="description">Descripcion de nueva</label>
+                    <input type="text" name="description" id="description" class="form-control form-control-lg" required/>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-success btn-lg btn-block px-5">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

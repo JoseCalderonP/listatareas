@@ -1,0 +1,38 @@
+{% extends 'baseTareas.html' %}
+{% block header %}
+<h1>{% block title %}Editar {{todo['description']}}{%  endblock %}</h1>
+{% endblock %}
+
+{% block content%}
+    <div class="container padded">
+        <a class="btn btn-outline-secondary action" href="{{url_for('todo.index')}}">Regresar</a>
+    </div>
+    <div class="container padded">
+        <form method="post">
+            <h4 class="form-label" for="description">Descripcion:</h4>
+            <input class="form-control form-control-lg" name="description" id="description" value="{{request.form['description'] or todo['description']}}" required>
+
+            <h4>¿Marcar Tarea como Completa?</h4>
+            <input class="form-check-input" type="checkbox" name="completed" id="completed"
+                {% if todo['completed'] == 1 %}
+                    checked
+                {% endif %}
+            >
+            
+            <label class="form-check-label" for="flexCheckIndeterminate">
+                <label class="form-label" for="completed">Completado</label>
+            </label>
+
+            <div class="container row padded">
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-success btnLog">Actualizar</button>
+                </div>
+                <div class="col text-lg-end">
+                    <form action="{{url_for('todo.delete', id=todo['id'])}}" method="post">
+                        <button type="submit" class="btn btn-outline-danger btnLog" onclick="return confirm('¿Estas seguro?')">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
